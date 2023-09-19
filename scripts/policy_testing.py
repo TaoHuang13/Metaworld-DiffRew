@@ -16,12 +16,14 @@ env_name = "door-lock-v2"
 random.seed(seed)
 ml1 = metaworld.MT50(seed=seed)
 env = ml1.train_classes[env_name]()
+#print(ml1.train_tasks)
 task = [t for t in ml1.train_tasks if t.env_name == env_name][0]
+print([t for t in ml1.train_tasks if t.env_name == env_name])
 env.set_task(task)
 env.seed(seed)
 env.action_space.seed(seed)
 env.observation_space.seed(seed)
-obs = env.reset()
+obs = env.reset()[0]
 
 p = policy()
 count = 0
